@@ -41,7 +41,7 @@ class Server:
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """
-        Return a dictionary with key-value pairs for deletion-resilient pagination.
+        Return a dictionary with key-value pairs
         """
         indexed_data = self.indexed_dataset()
 
