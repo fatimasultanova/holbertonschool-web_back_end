@@ -10,14 +10,24 @@ const app = http.createServer((req, res) => {
   if (req.url === '/') {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    res.write('This is the list of our students\n');
+    const responseParts = ['This is the list of our students'];
+
+    const originalLog = console.log;
+    console.log = (msg) => {
+      responseParts.push(msg);
+    };
+
     countStudents(databaseFile)
-      .then((data) => {
-        res.end(data);
+      .then(() => {
+        console.log = originalLog;
+        res.end(responseParts.join('\n'));
       })
       .catch((err) => {
-        res.end(err.message);
+        console.log = originalLog;
+        res.end(`This is the list of our students\n${err.message}`);
       });
+  } else {
+    res.end('Hello Holberton School!');
   }
 });
 
