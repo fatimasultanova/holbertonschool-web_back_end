@@ -7,8 +7,8 @@ export default class StudentsController {
     readDatabase(dbPath)
       .then((students) => {
         const output = ['This is the list of our students'];
-        const fields = Object.keys(students).sort((a, b) =>
-          a.toLowerCase().localeCompare(b.toLowerCase())
+        const fields = Object.keys(students).sort(
+          (a, b) => a.toLowerCase().localeCompare(b.toLowerCase()),
         );
 
         for (const field of fields) {
